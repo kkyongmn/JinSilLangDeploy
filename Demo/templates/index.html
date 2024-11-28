@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What's in my 냉장고?</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <!-- 헤더 -->
+    <header class="header">
+      <button class="auth-button">로그인</button>
+      <button class="auth-button">회원가입</button>
+    </header>
+
+    <!-- 메인 섹션 -->
+    <main class="main">
+      <h1 class="title">What's in my 냉장고?</h1>
+      <div class="fridge-container">
+        <img src="/static/Red.png" alt="Red Fridge" class="fridge-image">
+        <!-- 버튼 섹션 -->
+        <button class="tab-button" id="my-fridge-button" onclick="window.location.href='/myFridge';">나의 냉장고</button>
+        <button class="tab-button" id="recipe-button">레시피</button>
+        <button class="tab-button" id="quiz-button">퀴즈</button>
+        <button class="tab-button" id="chatbot-button">챗봇</button>
+      </div>
+    </main>
+  </div>
+  <script src="/static/index.js"></script>
+</body>
+</html>

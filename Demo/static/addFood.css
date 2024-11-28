@@ -1,0 +1,18 @@
+.complete-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #ff5b5b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .complete-button:hover {
+    background-color: #e04e4e;
+  }
+  

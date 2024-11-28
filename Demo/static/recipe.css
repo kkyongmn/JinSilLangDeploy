@@ -1,0 +1,173 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fff7f7;
+    color: #333;
+    line-height: 1.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding-top: 50px;
+    /* transform: scale(0.8); */
+  }
+  
+
+  .container {
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+    background-color: #ffffff; /* 컨테이너 배경 추가 */
+    border-radius: 10px; /* 모서리 둥글게 */
+    padding: 10px; /* 컨테이너 내부 여백 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 살짝 그림자 추가 */
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    /* background-color: #ffffff; */
+    border-bottom: 1px solid #eaeaea;
+  }
+  
+  .back-button {
+    background: none;
+    border: none;
+    font-size: 32px;
+    color: #ff5b5b;
+    cursor: pointer;
+    padding-bottom: 15px;
+  }
+
+  .title {
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center; /* 중앙 정렬 */
+    margin: 50px 0 20px 0; /* 헤더와 검색창 사이 간격 */
+  }
+
+  /* 검색 및 필터 */
+  .search-filter {
+    display: flex;
+    padding: 0px 30px;
+    flex-direction: column; /* 수직 배치 */
+    align-items: center; /* 수평 중앙 정렬 */
+  }
+  
+  .search-bar {
+    width: 90%;
+    max-width: 800px; /* 최대 너비 제한 */
+    padding: 20px;
+    border: 2px solid #eaeaea;
+    border-radius: 20px;
+    font-size: 18px;
+  }
+  
+  .filter-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    gap: 16px; /* 버튼 간의 간격 */
+  }
+  
+  .filter-button {
+    background-color: #ffd8d8;
+    border: none;
+    border-radius: 20px;
+    padding: 14px 36px;
+    font-size: 20px;
+    color: #ff5b5b;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .filter-button.active {
+    background-color: #ff5b5b;
+    color: #ffffff;
+  }
+
+  .filter-button:hover {
+    background-color: #ff5b5b;
+    color: white;
+  }
+  
+  
+  .sort-bar {
+    margin-left: auto;
+    padding-top: 30px;
+    padding-right: 45px;
+    font-size: 16px;
+    text-align: right;
+    color: #999;
+  }
+  
+  /* Recipe List */
+  .recipe-list {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 30px;
+    column-gap: 50px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .recipe-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    padding: 20px;
+    text-align: center;
+    margin: 10px;
+  }
+  
+  .recipe-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff5b5b;
+    margin-bottom: 10px;
+  } 
+  
+  .recipe-image {
+    width: 90%;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  
+  /* Recipe Info Box */
+  .recipe-info-box {
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    padding: 13px;
+  }
+  
+  .recipe-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    color: #333;
+  }
+  
+  .info-item {
+    display: flex;
+    padding-left: 12px;
+    padding-right: 12px;
+    flex-direction: column; /* 세로로 정렬 */
+    align-items: center; /* 중앙 정렬 */
+    gap: 5px; /* 이미지와 텍스트 사이 간격 */
+  }
+  
+  .info-icon {
+    width: 30px; /* 아이콘의 너비 */
+    height: 30px; /* 아이콘의 높이 */
+    object-fit: contain; /*이미지 비율 유지 */
+  }
+  

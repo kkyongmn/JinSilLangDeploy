@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>나만의 냉장고</title>
+    <link rel="stylesheet" href="/static/myFridge.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- 헤더 -->
+      <header class="header">
+        <button class="back-button">←</button>
+        <div class="action-buttons">
+          <a
+            href="{{ url_for('add_food_page') }}"
+            id="add-button"
+            class="filter-button"
+            >물건 추가</a
+          >
+          <button id="delete-button" class="filter-button">물건 삭제</button>
+        </div>
+      </header>
+      <h1 class="title">나만의 냉장고</h1>
+
+      <!-- 검색 및 필터 -->
+      <div class="search-filter">
+        <input
+          type="text"
+          class="search-bar"
+          placeholder="상품 이름으로 검색"
+        />
+        <div class="filter-buttons">
+          <button class="filter-button active">모두</button>
+          <button class="filter-button">냉장</button>
+          <button class="filter-button">냉동</button>
+          <button class="filter-button">실외</button>
+        </div>
+      </div>
+
+      <!-- 정렬 -->
+      <div class="sort-bar">
+        <span>유통기한 임박순 ▼</span>
+      </div>
+
+      <div class="images">
+        {% for item in food_with_images %}
+        <div class="item">
+          <img
+            src="{{ item.image_url }}"
+            alt="{{ item.food.name }}"
+            class="item-image"
+            style="float: left; width: 150px; height: auto; margin: 20px"
+          />
+          <div class="item-info">
+            <h3>{{ item.food.name }}</h3>
+            <p>유통기한: {{ item.food.expiry_date }}</p>
+            <p>남은 기간: {{ item.food.remaining_days }}일</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- JavaScript가 여기에 데이터를 렌더링 -->
+
+      <!-- Modal for Adding Items -->
+      <div id="add-food-modal" class="modal">
+        <div class="modal-content">
+          <h3>물건 추가</h3>
+          <form id="add-food-form">
+            <label for="item-name">이름:</label>
+            <input type="text" id="item-name" name="item-name" required />
+            <label for="expiry-date">유통기한:</label>
+            <input type="date" id="expiry-date" name="expiry-date" required />
+            <button type="submit">추가</button>
+            <button type="button" id="cancel-button">취소</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript 연결 -->
+    <script>
+      // 서버에서 데이터를 가져와 화면에 표시
+      function fetchAndRenderItems() {
+        fetch("/get-items")
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              const itemList = document.getElementById("item-list");
+              itemList.innerHTML = "";
+
+              data.foods.forEach((item) => {
+                const itemElement = document.createElement("div");
+                itemElement.className = "item";
+                itemElement.dataset.foodId = item.id; // 삭제용 ID 추가
+                const imageUrl = data.image_urls[index];
+                itemElement.innerHTML = `
+              <div class="item-info">
+                <h3>${item.name}</h3>
+                <p>유통기한: ${item.expiry_date}</p>
+                <p>남은 기간: ${item.remaining_days}일</p>
+                <img src="${imageUrl}" alt="${item.name}" class="food-image">
+            `;
+                itemList.appendChild(itemElement);
+              });
+
+              console.log("데이터 렌더링 완료");
+            } else {
+              console.error("데이터를 가져오지 못했습니다:", data.error);
+            }
+          })
+          .catch((error) => console.error("데이터 요청 중 오류 발생:", error));
+      }
+
+      // 페이지 로드 시 데이터 가져오기
+      document.addEventListener("DOMContentLoaded", fetchAndRenderItems);
+    </script>
+    <script src="/static/back.js"></script>
+    <script src="/static/myFridge.js" defer></script>
+    <!-- 외부 JavaScript 파일 연결 -->
+    <script src="/static/expiryAlert.js"></script>
+  </body>
+</html>

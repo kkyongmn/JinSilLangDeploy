@@ -1,0 +1,186 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #fff7f7;
+  color: #333;
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding-top: 50px;
+  /* transform: scale(0.8); */
+}
+
+.container {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  background-color: #ffffff; /* 컨테이너 배경 추가 */
+  border-radius: 10px; /* 모서리 둥글게 */
+  padding: 10px; /* 컨테이너 내부 여백 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 살짝 그림자 추가 */
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  /* background-color: #ffffff; */
+  border-bottom: 1px solid #eaeaea;
+}
+
+.title {
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center; /* 중앙 정렬 */
+  margin: 50px 0 20px 0; /* 헤더와 검색창 사이 간격 */
+}
+
+.add-button {
+  background: none;
+  border: none;
+  color: #ff5b5b;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    font-size: 32px;
+    color: #ff5b5b;
+    cursor: pointer;
+    padding-bottom: 15px;
+  }
+
+/* 검색 및 필터 */
+.search-filter {
+  display: flex;
+  padding: 0px 30px;
+  flex-direction: column; /* 수직 배치 */
+  align-items: center; /* 수평 중앙 정렬 */
+}
+
+.search-bar {
+  width: 90%;
+  max-width: 800px; /* 최대 너비 제한 */
+  padding: 20px;
+  border: 2px solid #eaeaea;
+  border-radius: 20px;
+  font-size: 18px;
+}
+
+.filter-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  gap: 16px; /* 버튼 간의 간격 */
+
+}
+
+.filter-button {
+  background-color: #ffd8d8;
+  border: none;
+  border-radius: 20px;
+  padding: 14px 58px;
+  font-size: 20px;
+  color: #ff5b5b;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-button.active {
+  background-color: #ff5b5b;
+  color: #ffffff;
+}
+
+.filter-button:hover {
+  background-color: #ff5b5b;
+  color: white;
+}
+
+/* 정렬 바 */
+.sort-bar {
+  padding-top: 30px;
+  padding-right: 45px;
+  font-size: 20px;
+  text-align: right;
+  color: #999;
+}
+
+/* 아이템 리스트 */
+.item-list {
+  padding: 0px 100px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  padding: 40px 0;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.item-image {
+  width: 280px;
+  height: 200px;
+  border-radius: 30px;
+  margin-right: 50px;
+}
+
+.item-info h3 {
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.item-info p {
+  font-size: 20px;
+  color: #666;
+}
+
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-content form input {
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.modal-content form button {
+  margin: 5px 0;
+  padding: 10px;
+  font-size: 16px;
+}
+

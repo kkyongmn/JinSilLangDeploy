@@ -1,0 +1,32 @@
+[
+    {
+        "id": 10,
+        "name": "\ub2ec\uac40",
+        "expiry_date": "2024-11-25",
+        "remaining_days": 0
+    },
+    {
+        "id": 5,
+        "name": "\ub808\ubaac",
+        "expiry_date": "2024-11-26",
+        "remaining_days": 0
+    },
+    {
+        "id": 11,
+        "name": "\ub9c8\uc694\ub124\uc988",
+        "expiry_date": "2024-11-26",
+        "remaining_days": 0
+    },
+    {
+        "id": 9,
+        "name": "\uc18c\uc2dc\uc9c0",
+        "expiry_date": "2024-11-23",
+        "remaining_days": 0
+    },
+    {
+        "id": 3,
+        "name": "\ub545\ucf69\ubc84\ud130",
+        "expiry_date": "2024-11-30",
+        "remaining_days": 2
+    }
+]

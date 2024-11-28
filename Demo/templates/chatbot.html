@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>챗봇</title>
+  <link rel="stylesheet" href="/static/chatbot.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 헤더 -->
+    <header class="header">
+      <button class="back-button">←</button>
+    </header>
+    <h1 class="title">챗 봇</h1>
+
+    <!-- 챗봇 내용 -->
+    <main class="chatbot-content">
+      <!-- <div class="chatbox">
+        <p class="placeholder">무엇이든 물어보세요!</p>
+      </div> -->
+      <div id="chat-container">
+        <!-- 대화 출력 영역 -->
+        <div id="response-container"></div>
+        <!-- 사용자 입력 -->
+
+      </div>
+      <div class="chatbox">
+        <input id="user-input" type="text" placeholder="   메시지를 입력하세요." />
+        <button id="send-button">전송</button>
+      </div>
+
+      <div class="chatbot-message">
+        <div class="chat-bubble bot">
+          <p>안녕하세요! 요리하는 챗봇 진실랭입니다! <br> 식재료나 레시피에 관련하여 궁금한 점을 질문해주세요!</p>
+           <!-- <p>안녕하세요!</p> -->
+        </div>
+        <img src="/static/botface.png" alt="botface" class="bot-face">
+      </div>
+    </main>
+  </div>
+  <script src="/static/back.js"></script>
+  <script>
+    document.getElementById("send-button").addEventListener("click", async () => {
+      const userInput = document.getElementById("user-input").value.trim();
+      if (userInput === "") return;
+
+      // 사용자 메시지를 화면에 추가
+      const responseContainer = document.getElementById("response-container");
+      const userMessageDiv = document.createElement("div");
+      userMessageDiv.className = "chat-bubble user";
+      userMessageDiv.textContent = userInput;
+      responseContainer.appendChild(userMessageDiv);
+
+      // 서버로 사용자 메시지 전송
+      const response = await fetch("/get_response", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: userInput }),
+      });
+
+      // 서버에서 받은 GPT-4 응답 출력
+      const data = await response.json();
+      const botMessageDiv = document.createElement("div");
+      botMessageDiv.className = "chat-bubble bot";
+      botMessageDiv.innerHTML = data.response.replace(/\n/g, "<br>");
+      responseContainer.appendChild(botMessageDiv);
+
+      // 입력 필드 초기화
+      document.getElementById("user-input").value = "";
+
+      // 정렬이 깨지지 않도록 chatbox 유지
+      const chatbox = document.querySelector(".chatbox");
+      chatbox.style.justifyContent = "center";
+
+      // 스크롤 자동으로 아래로 이동
+      responseContainer.scrollTop = responseContainer.scrollHeight; 
+    });
+  </script>
+</body>
+</html>

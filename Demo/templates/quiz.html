@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>퀴즈</title>
+  <link rel="stylesheet" href="/static/quiz.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 헤더 -->
+    <header class="header">
+      <button class="back-button" id="back-button">←</button>
+    </header>
+    <h1 class="title">퀴즈 <span class="highlight">!?</span></h1>
+
+    <!-- 퀴즈 내용 -->
+    <main class="quiz-content">
+      <div class="question-box">
+        <!-- 질문 표시 영역 -->
+        <p>{{ question }}</p>
+      </div>
+      <div class="answer-buttons">
+        <button class="answer-button wrong" id="btn-x" onclick="showExplanation('X')">
+          <span class="symbol">✕</span>
+        </button>
+        <button class="answer-button correct" id="btn-o" onclick="showExplanation('O')">
+          <span class="symbol">◯</span>
+        </button>
+      </div>
+      <div id="explanation-box" style="display: none; margin-top: 20px; font-size: 18px; color: #333;">
+        <p id="explanation-text"></p>
+      </div>
+    </main>
+  </div>
+
+  <!-- 데이터를 JavaScript에 전달 -->
+  <script>
+    const correctAnswer = {{ answer | tojson }};
+    const explanation = {{ explanation | tojson }};
+  </script>
+  <script src="/static/quiz.js" defer></script>
+</body>
+</html>

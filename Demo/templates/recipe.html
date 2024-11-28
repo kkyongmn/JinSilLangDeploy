@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>레시피 추천</title>
+  <link rel="stylesheet" href="/static/recipe.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <button class="back-button" onclick="window.history.back();">←</button>
+    </header>
+    <h1 class="title">레시피 추천</h1>
+
+    <main class="main-content">
+      <!-- 기존 recipe_data 텍스트 출력 -->
+      <div id="recipe-data">
+        <p>{{ recipe_data }}</p>
+      </div>
+
+      <!-- 레시피 데이터를 구조화하여 출력 -->
+      <div id="structured-recipe-data">
+        <h2>요리 이름: {{ recipe_data.name }}</h2>
+        <p><strong>재료:</strong> {{ recipe_data.ingredients }}</p>
+        <h3>조리 방법:</h3>
+        <ol>
+          {% for step in recipe_data.recipe %}
+            <li>{{ step }}</li>
+          {% endfor %}
+        </ol>
+        </div>
+      <div>
+        <p>
+          {% if recipe_data.url %}
+            <a href="{{ recipe_data.url }}" target="_blank">레시피 자세히 보기</a>
+          {% else %}
+            <p>레시피 URL이 없습니다.</p>
+          {% endif %}
+        </p>
+      </div>
+
+      <!-- DALL-E 생성 이미지 렌더링
+      <div id="recipe-image">
+        {% if image_url %}
+          <h3>추천 요리 이미지:</h3>
+          <img src="{{ image_url }}" alt="Generated Image of {{ recipe_data.name }}" style="width:400px;">
+        {% else %}
+          <p>이미지를 생성할 수 없습니다.</p>
+        {% endif %}
+      </div> -->
+
+      <!-- 기존 자바스크립트를 통한 동적 렌더링 유지 -->
+      <div id="recipe-list" class="recipe-list">
+        <!-- 레시피 카드가 여기에 렌더링됩니다 -->
+      </div>
+    </main>
+
+    <script>
+      // 기존 JavaScript 코드 유지
+      document.addEventListener('DOMContentLoaded', () => {
+        fetch('/get-recipes')
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              renderRecipes(data.recipes);
+            } else {
+              console.error('레시피 데이터를 가져오는 중 오류:', data.error);
+            }
+          })
+          .catch(error => console.error('서버 요청 중 오류:', error));
+      });
+
+      function renderRecipes(recipes) {
+        const recipeList = document.getElementById('recipe-list');
+        recipeList.innerHTML = '';
+
+        if (recipes.length === 0) {
+          recipeList.innerHTML = '<p>현재 냉장고 재료로 만들 수 있는 레시피가 없습니다.</p>';
+          return;
+        }
+
+        recipes.forEach(recipe => {
+          const recipeCard = document.createElement('div');
+          recipeCard.className = 'recipe-card';
+
+          recipeCard.innerHTML = `
+            <h3 class="recipe-title">${recipe.name}</h3>
+            <img src="${recipe.image}" alt="${recipe.name}" class="recipe-image">
+            <div class="recipe-info-box">
+              <div class="recipe-info">
+                <p>요리 시간: ${recipe.time}분</p>
+                <p>재료: ${recipe.ingredients.join(', ')}</p>
+
+              </div>
+            </div>
+          `;
+
+          recipeList.appendChild(recipeCard);
+        });
+      }
+    </script>
+  </div>
+</body>
+</html>
